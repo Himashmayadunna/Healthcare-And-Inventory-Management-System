@@ -4,6 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
+const health_1 = __importDefault(require("./health"));
 const auth_routes_1 = __importDefault(require("./auth.routes"));
 const dashboard_routes_1 = __importDefault(require("./dashboard.routes"));
 const patient_routes_1 = __importDefault(require("./patient.routes"));
@@ -18,6 +19,7 @@ const payment_routes_1 = __importDefault(require("./payment.routes"));
 const analytics_routes_1 = __importDefault(require("./analytics.routes"));
 const router = (0, express_1.Router)();
 // Mount all API endpoints
+router.use('/', health_1.default); // Registers /health as /api/health
 router.use('/auth', auth_routes_1.default);
 router.use('/dashboard', dashboard_routes_1.default);
 router.use('/patients', patient_routes_1.default);

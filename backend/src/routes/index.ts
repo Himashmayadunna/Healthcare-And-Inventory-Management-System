@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import healthRoutes from './health';
 import authRoutes from './auth.routes';
 import dashboardRoutes from './dashboard.routes';
 import patientRoutes from './patient.routes';
@@ -15,6 +16,7 @@ import analyticsRoutes from './analytics.routes';
 const router = Router();
 
 // Mount all API endpoints
+router.use('/', healthRoutes); // Registers /health as /api/health
 router.use('/auth', authRoutes);
 router.use('/dashboard', dashboardRoutes);
 router.use('/patients', patientRoutes);

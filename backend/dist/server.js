@@ -14,8 +14,9 @@ const PORT = parseInt(process.env.PORT || '5000', 10);
  */
 const bootstrap = async () => {
     try {
-        console.log('Initializing database connection pool...');
+        console.log('Connecting to Microsoft SQL Server...');
         await (0, db_1.connectDB)();
+        console.log('Successfully connected to Microsoft SQL Server.');
         app_1.default.listen(PORT, () => {
             console.log(`=========================================`);
             console.log(`  MediLex Backend is active in '${process.env.NODE_ENV || 'development'}'`);
@@ -25,7 +26,7 @@ const bootstrap = async () => {
         });
     }
     catch (error) {
-        console.error('Critical Failure: Application failed to start.', error);
+        console.error('Critical Failure: Database connection failed. Application will now exit.', error);
         process.exit(1);
     }
 };

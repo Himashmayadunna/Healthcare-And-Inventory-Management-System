@@ -11,11 +11,11 @@ const dbConfig = {
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
     server: process.env.DB_SERVER || 'localhost',
-    database: process.env.DB_NAME || 'MediLexDB',
+    database: process.env.DB_DATABASE || 'MediLexDB',
     port: parseInt(process.env.DB_PORT || '1433', 10),
     options: {
-        encrypt: process.env.DB_ENCRYPT === 'true', // true if connecting to cloud/Azure
-        trustServerCertificate: process.env.DB_TRUST_SERVER_CERTIFICATE === 'true', // true for self-signed certificates in local dev
+        encrypt: false,
+        trustServerCertificate: true,
     },
     pool: {
         max: 10,
