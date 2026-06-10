@@ -1,0 +1,33 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const auth_routes_1 = __importDefault(require("./auth.routes"));
+const dashboard_routes_1 = __importDefault(require("./dashboard.routes"));
+const patient_routes_1 = __importDefault(require("./patient.routes"));
+const doctor_routes_1 = __importDefault(require("./doctor.routes"));
+const appointment_routes_1 = __importDefault(require("./appointment.routes"));
+const prescription_routes_1 = __importDefault(require("./prescription.routes"));
+const medicine_routes_1 = __importDefault(require("./medicine.routes"));
+const inventory_routes_1 = __importDefault(require("./inventory.routes"));
+const supplier_routes_1 = __importDefault(require("./supplier.routes"));
+const billing_routes_1 = __importDefault(require("./billing.routes"));
+const payment_routes_1 = __importDefault(require("./payment.routes"));
+const analytics_routes_1 = __importDefault(require("./analytics.routes"));
+const router = (0, express_1.Router)();
+// Mount all API endpoints
+router.use('/auth', auth_routes_1.default);
+router.use('/dashboard', dashboard_routes_1.default);
+router.use('/patients', patient_routes_1.default);
+router.use('/doctors', doctor_routes_1.default);
+router.use('/appointments', appointment_routes_1.default);
+router.use('/prescriptions', prescription_routes_1.default);
+router.use('/medicines', medicine_routes_1.default);
+router.use('/inventory', inventory_routes_1.default);
+router.use('/suppliers', supplier_routes_1.default);
+router.use('/invoices', billing_routes_1.default);
+router.use('/payments', payment_routes_1.default);
+router.use('/analytics', analytics_routes_1.default);
+exports.default = router;

@@ -1,0 +1,11 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const billing_controller_1 = require("../controllers/billing.controller");
+const rules_1 = require("../validators/rules");
+const auth_1 = require("../middleware/auth");
+const router = (0, express_1.Router)();
+router.get('/', auth_1.authenticateToken, (0, auth_1.authorizeRole)(['Admin', 'Receptionist']), billing_controller_1.BillingController.getAll);
+router.get('/:id', auth_1.authenticateToken, (0, auth_1.authorizeRole)(['Admin', 'Receptionist']), rules_1.idParamCheck, billing_controller_1.BillingController.getById);
+router.post('/', auth_1.authenticateToken, (0, auth_1.authorizeRole)(['Admin', 'Receptionist']), rules_1.invoiceRules, billing_controller_1.BillingController.create);
+exports.default = router;

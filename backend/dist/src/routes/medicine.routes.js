@@ -1,0 +1,13 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const medicine_controller_1 = require("../controllers/medicine.controller");
+const rules_1 = require("../validators/rules");
+const auth_1 = require("../middleware/auth");
+const router = (0, express_1.Router)();
+router.get('/', auth_1.authenticateToken, medicine_controller_1.MedicineController.getAll);
+router.get('/:id', auth_1.authenticateToken, rules_1.idParamCheck, medicine_controller_1.MedicineController.getById);
+router.post('/', auth_1.authenticateToken, (0, auth_1.authorizeRole)(['Admin', 'Pharmacist']), rules_1.medicineRules, medicine_controller_1.MedicineController.create);
+router.put('/:id', auth_1.authenticateToken, (0, auth_1.authorizeRole)(['Admin', 'Pharmacist']), rules_1.idParamCheck, rules_1.medicineRules, medicine_controller_1.MedicineController.update);
+router.delete('/:id', auth_1.authenticateToken, (0, auth_1.authorizeRole)(['Admin']), rules_1.idParamCheck, medicine_controller_1.MedicineController.delete);
+exports.default = router;
