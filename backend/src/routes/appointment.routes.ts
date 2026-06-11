@@ -7,7 +7,7 @@ const router = Router();
 
 router.get('/', authenticateToken, authorizeRole(['Admin', 'Receptionist', 'Doctor']), AppointmentController.getAll);
 router.get('/:id', authenticateToken, idParamCheck, AppointmentController.getById);
-router.post('/', authenticateToken, authorizeRole(['Admin', 'Receptionist']), appointmentRules, AppointmentController.create);
+router.post('/', authenticateToken, authorizeRole(['Admin', 'Receptionist', 'Doctor']), appointmentRules, AppointmentController.create);
 router.put('/:id', authenticateToken, authorizeRole(['Admin', 'Receptionist', 'Doctor']), idParamCheck, appointmentRules, AppointmentController.update);
 router.delete('/:id', authenticateToken, authorizeRole(['Admin']), idParamCheck, AppointmentController.delete);
 

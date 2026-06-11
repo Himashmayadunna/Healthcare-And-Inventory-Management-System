@@ -18,7 +18,21 @@ export class PatientService {
    */
   static async getAll() {
     const pool = getPool();
-    const result = await pool.request().query('SELECT * FROM dbo.Patients ORDER BY full_name ASC');
+    const result = await pool.request().query(`
+      SELECT 
+        patient_id,
+        full_name,
+        gender,
+        CONVERT(VARCHAR(10), dob, 120) AS dob,
+        blood_group,
+        phone,
+        email,
+        address,
+        created_at,
+        updated_at
+      FROM dbo.Patients 
+      ORDER BY full_name ASC
+    `);
     return result.recordset;
   }
 
@@ -29,7 +43,21 @@ export class PatientService {
     const pool = getPool();
     const result = await pool.request()
       .input('patientId', mssql.Int, patientId)
-      .query('SELECT * FROM dbo.Patients WHERE patient_id = @patientId');
+      .query(`
+        SELECT 
+          patient_id,
+          full_name,
+          gender,
+          CONVERT(VARCHAR(10), dob, 120) AS dob,
+          blood_group,
+          phone,
+          email,
+          address,
+          created_at,
+          updated_at
+        FROM dbo.Patients 
+        WHERE patient_id = @patientId
+      `);
 
     const patient = result.recordset[0];
     if (!patient) {

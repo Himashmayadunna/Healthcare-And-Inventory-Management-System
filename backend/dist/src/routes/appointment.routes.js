@@ -7,7 +7,7 @@ const auth_1 = require("../middleware/auth");
 const router = (0, express_1.Router)();
 router.get('/', auth_1.authenticateToken, (0, auth_1.authorizeRole)(['Admin', 'Receptionist', 'Doctor']), appointment_controller_1.AppointmentController.getAll);
 router.get('/:id', auth_1.authenticateToken, rules_1.idParamCheck, appointment_controller_1.AppointmentController.getById);
-router.post('/', auth_1.authenticateToken, (0, auth_1.authorizeRole)(['Admin', 'Receptionist']), rules_1.appointmentRules, appointment_controller_1.AppointmentController.create);
+router.post('/', auth_1.authenticateToken, (0, auth_1.authorizeRole)(['Admin', 'Receptionist', 'Doctor']), rules_1.appointmentRules, appointment_controller_1.AppointmentController.create);
 router.put('/:id', auth_1.authenticateToken, (0, auth_1.authorizeRole)(['Admin', 'Receptionist', 'Doctor']), rules_1.idParamCheck, rules_1.appointmentRules, appointment_controller_1.AppointmentController.update);
 router.delete('/:id', auth_1.authenticateToken, (0, auth_1.authorizeRole)(['Admin']), rules_1.idParamCheck, appointment_controller_1.AppointmentController.delete);
 exports.default = router;

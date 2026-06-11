@@ -19,7 +19,7 @@ exports.validateResult = validateResult;
  * Authentication Rules
  */
 exports.loginRules = [
-    (0, express_validator_1.body)('username').trim().notEmpty().withMessage('Username is required'),
+    (0, express_validator_1.body)('username').trim().notEmpty().withMessage('Username or email is required'),
     (0, express_validator_1.body)('password').notEmpty().withMessage('Password is required'),
     exports.validateResult,
 ];

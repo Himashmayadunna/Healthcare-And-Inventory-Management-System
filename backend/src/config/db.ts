@@ -3,12 +3,15 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
+const rawServer = process.env.DB_SERVER || "localhost";
+const [serverHost] = rawServer.split(/\\+/); // extract host and ignore instance name to connect directly via port
+
 const dbConfig: mssql.config = {
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  server: process.env.DB_SERVER || 'localhost',
-  database: process.env.DB_DATABASE || 'MediLexDB',
-  port: parseInt(process.env.DB_PORT || '1433', 10),
+  server: serverHost,
+  port: parseInt(process.env.DB_PORT || "1433", 10),
+  database: process.env.DB_DATABASE || "MediLexDB",
+  user: process.env.DB_USER || "sa",
+  password: process.env.DB_PASSWORD || "",
   options: {
     encrypt: false,
     trustServerCertificate: true,

@@ -126,7 +126,7 @@ CREATE TABLE dbo.Prescription_Items (
 CREATE TABLE dbo.Invoices (
     invoice_id INT IDENTITY(1,1) PRIMARY KEY,
     patient_id INT NOT NULL FOREIGN KEY REFERENCES dbo.Patients(patient_id) ON DELETE CASCADE,
-    appointment_id INT NULL FOREIGN KEY REFERENCES dbo.Appointments(appointment_id) ON DELETE SET NULL,
+    appointment_id INT NULL FOREIGN KEY REFERENCES dbo.Appointments(appointment_id),
     total_amount DECIMAL(10,2) NOT NULL DEFAULT 0.00,
     status VARCHAR(20) NOT NULL CHECK (status IN ('Pending', 'Paid', 'Cancelled')) DEFAULT 'Pending',
     due_date DATE NOT NULL,

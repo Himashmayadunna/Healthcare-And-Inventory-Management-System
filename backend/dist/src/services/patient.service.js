@@ -13,7 +13,21 @@ class PatientService {
      */
     static async getAll() {
         const pool = (0, db_1.getPool)();
-        const result = await pool.request().query('SELECT * FROM dbo.Patients ORDER BY full_name ASC');
+        const result = await pool.request().query(`
+      SELECT 
+        patient_id,
+        full_name,
+        gender,
+        CONVERT(VARCHAR(10), dob, 120) AS dob,
+        blood_group,
+        phone,
+        email,
+        address,
+        created_at,
+        updated_at
+      FROM dbo.Patients 
+      ORDER BY full_name ASC
+    `);
         return result.recordset;
     }
     /**
@@ -23,7 +37,21 @@ class PatientService {
         const pool = (0, db_1.getPool)();
         const result = await pool.request()
             .input('patientId', mssql_1.default.Int, patientId)
-            .query('SELECT * FROM dbo.Patients WHERE patient_id = @patientId');
+            .query(`
+        SELECT 
+          patient_id,
+          full_name,
+          gender,
+          CONVERT(VARCHAR(10), dob, 120) AS dob,
+          blood_group,
+          phone,
+          email,
+          address,
+          created_at,
+          updated_at
+        FROM dbo.Patients 
+        WHERE patient_id = @patientId
+      `);
         const patient = result.recordset[0];
         if (!patient) {
             throw new errors_1.NotFoundError(`Patient with ID ${patientId} not found.`);

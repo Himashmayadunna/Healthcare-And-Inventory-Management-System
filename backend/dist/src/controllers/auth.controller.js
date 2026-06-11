@@ -47,5 +47,18 @@ class AuthController {
             next(error);
         }
     }
+    /**
+     * Register a new user.
+     */
+    static async register(req, res, next) {
+        try {
+            const { username, password, email, fullName, role } = req.body;
+            const data = await auth_service_1.AuthService.register(username, password, email, fullName, role);
+            (0, response_1.sendSuccess)(res, 'Registration successful.', data);
+        }
+        catch (error) {
+            next(error);
+        }
+    }
 }
 exports.AuthController = AuthController;

@@ -47,4 +47,18 @@ export class AuthController {
       next(error);
     }
   }
+
+  /**
+   * Register a new user.
+   */
+  static async register(req: Request, res: Response, next: NextFunction): Promise<void> {
+    try {
+      const { username, password, email, fullName, role } = req.body;
+      const data = await AuthService.register(username, password, email, fullName, role);
+      sendSuccess(res, 'Registration successful.', data);
+    } catch (error) {
+      next(error);
+    }
+  }
 }
+

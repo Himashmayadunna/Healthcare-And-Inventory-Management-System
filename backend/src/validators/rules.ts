@@ -18,7 +18,7 @@ export const validateResult = (req: Request, res: Response, next: NextFunction):
  * Authentication Rules
  */
 export const loginRules = [
-  body('username').trim().notEmpty().withMessage('Username is required'),
+  body('username').trim().notEmpty().withMessage('Username or email is required'),
   body('password').notEmpty().withMessage('Password is required'),
   validateResult,
 ];

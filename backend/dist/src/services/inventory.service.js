@@ -17,7 +17,7 @@ class InventoryService {
       SELECT 
         i.inventory_id,
         i.quantity,
-        i.expiry_date,
+        CONVERT(VARCHAR(10), i.expiry_date, 120) AS expiry_date,
         i.reorder_level,
         i.created_at,
         i.updated_at,
@@ -46,7 +46,7 @@ class InventoryService {
         SELECT 
           i.inventory_id,
           i.quantity,
-          i.expiry_date,
+          CONVERT(VARCHAR(10), i.expiry_date, 120) AS expiry_date,
           i.reorder_level,
           i.created_at,
           m.medicine_id,

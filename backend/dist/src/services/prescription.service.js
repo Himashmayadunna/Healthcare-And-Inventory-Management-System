@@ -46,7 +46,7 @@ class PrescriptionService {
           p.patient_id,
           p.full_name AS patient_name,
           p.phone AS patient_phone,
-          p.dob AS patient_dob,
+          CONVERT(VARCHAR(10), p.dob, 120) AS patient_dob,
           p.gender AS patient_gender,
           d.doctor_id,
           d.doctor_name AS doctor_name,

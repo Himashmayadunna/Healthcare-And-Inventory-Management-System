@@ -16,26 +16,12 @@ DELETE FROM dbo.Doctors;
 DELETE FROM dbo.Patients;
 DELETE FROM dbo.Users;
 
--- Reset Identity counters
-DBCC CHECKIDENT ('dbo.Users', RESEED, 0);
-DBCC CHECKIDENT ('dbo.Patients', RESEED, 0);
-DBCC CHECKIDENT ('dbo.Doctors', RESEED, 0);
-DBCC CHECKIDENT ('dbo.Appointments', RESEED, 0);
-DBCC CHECKIDENT ('dbo.Suppliers', RESEED, 0);
-DBCC CHECKIDENT ('dbo.Medicines', RESEED, 0);
-DBCC CHECKIDENT ('dbo.Inventory', RESEED, 0);
-DBCC CHECKIDENT ('dbo.Prescriptions', RESEED, 0);
-DBCC CHECKIDENT ('dbo.Prescription_Items', RESEED, 0);
-DBCC CHECKIDENT ('dbo.Invoices', RESEED, 0);
-DBCC CHECKIDENT ('dbo.Payments', RESEED, 0);
-DBCC CHECKIDENT ('dbo.RecentActivities', RESEED, 0);
-
 -- Insert Users (password: password123)
 INSERT INTO dbo.Users (username, password_hash, email, full_name, role) VALUES
-('admin', '$2a$10$7R9Mv6N34hVnC4w3H1n5ke8/aD2Bq/W.H4fG3YnC8hQ3aG2q5.VWy', 'admin@medilex.com', 'Alex Mercer', 'Admin'),
-('receptionist', '$2a$10$7R9Mv6N34hVnC4w3H1n5ke8/aD2Bq/W.H4fG3YnC8hQ3aG2q5.VWy', 'receptionist@medilex.com', 'Sarah Jenkins', 'Receptionist'),
-('doctor', '$2a$10$7R9Mv6N34hVnC4w3H1n5ke8/aD2Bq/W.H4fG3YnC8hQ3aG2q5.VWy', 'doctor@medilex.com', 'Dr. Gregory House', 'Doctor'),
-('pharmacist', '$2a$10$7R9Mv6N34hVnC4w3H1n5ke8/aD2Bq/W.H4fG3YnC8hQ3aG2q5.VWy', 'pharmacist@medilex.com', 'John Doe', 'Pharmacist');
+('admin', '$2a$10$UuRzYQgoVd9gNCGnjgTB3O3zNrUQ2Fytlwyj7JpGQoCZnPTsj71US', 'admin@medilex.com', 'Alex Mercer', 'Admin'),
+('receptionist', '$2a$10$UuRzYQgoVd9gNCGnjgTB3O3zNrUQ2Fytlwyj7JpGQoCZnPTsj71US', 'receptionist@medilex.com', 'Sarah Jenkins', 'Receptionist'),
+('doctor', '$2a$10$UuRzYQgoVd9gNCGnjgTB3O3zNrUQ2Fytlwyj7JpGQoCZnPTsj71US', 'doctor@medilex.com', 'Dr. Gregory House', 'Doctor'),
+('pharmacist', '$2a$10$UuRzYQgoVd9gNCGnjgTB3O3zNrUQ2Fytlwyj7JpGQoCZnPTsj71US', 'pharmacist@medilex.com', 'John Doe', 'Pharmacist');
 
 -- Insert Patients
 INSERT INTO dbo.Patients (full_name, gender, dob, blood_group, phone, email, address) VALUES

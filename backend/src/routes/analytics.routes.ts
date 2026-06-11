@@ -4,6 +4,6 @@ import { authenticateToken, authorizeRole } from '../middleware/auth';
 
 const router = Router();
 
-router.get('/', authenticateToken, authorizeRole(['Admin']), AnalyticsController.getAnalytics);
+router.get('/', authenticateToken, authorizeRole(['Admin', 'Receptionist', 'Doctor', 'Pharmacist']), AnalyticsController.getAnalytics);
 
 export default router;

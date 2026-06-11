@@ -16,8 +16,8 @@ class AppointmentService {
         const result = await pool.request().query(`
       SELECT 
         a.appointment_id,
-        a.appointment_date,
-        a.appointment_time,
+        CONVERT(VARCHAR(10), a.appointment_date, 120) AS appointment_date,
+        CONVERT(VARCHAR(8), a.appointment_time, 108) AS appointment_time,
         a.status,
         a.notes,
         a.created_at,
@@ -44,8 +44,8 @@ class AppointmentService {
             .query(`
         SELECT 
           a.appointment_id,
-          a.appointment_date,
-          a.appointment_time,
+          CONVERT(VARCHAR(10), a.appointment_date, 120) AS appointment_date,
+          CONVERT(VARCHAR(8), a.appointment_time, 108) AS appointment_time,
           a.status,
           a.notes,
           a.created_at,
